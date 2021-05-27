@@ -4,10 +4,6 @@ mapboxgl.accessToken =
 'pk.eyJ1IjoiaXZhbm5hbGlzIiwiYSI6ImNrbzM0Y2c5ZjBzOTAydmpudXdtcnBuZTYifQ.BRwjq1JbwZfZOty3CnXTXA';
 
 const sheet_url = "https://docs.google.com/spreadsheets/d/1zh10oPPSiPEvb2EZFD-UZf2H1_sq_rgj"
-const latlong_sheet = 'dataset'
-
-const circle_radius = 4
-const point_color = 'purple' 
 
 // don't change anything below
 const transformRequest = (url, resourceType) => {
@@ -34,7 +30,7 @@ map.addControl(new mapboxgl.NavigationControl());
 $(document).ready(function () {
     $.ajax({
         type: "GET",
-        url: sheet_url + "/gviz/tq?tqx=out:csv&sheet=" + latlong_sheet,
+        url: sheet_url + "/gviz/tq?tqx=out:csv&sheet=dataset",
         dataType: "text",
         success: function (csvData) {
             makeGeoJSON(csvData);
@@ -56,8 +52,8 @@ $(document).ready(function () {
                         'data': data
                     },
                     'paint': {
-                        'circle-radius': circle_radius,
-                        'circle-color': point_color
+                        'circle-radius': 4,
+                        'circle-color': 'purple'
                     }
                 });
             });

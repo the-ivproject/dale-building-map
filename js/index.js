@@ -8,7 +8,7 @@ const sheet_name = 'dataset'
 const mapbox_token = 'pk.eyJ1IjoiaXZwcm9qZWN0IiwiYSI6ImNrcDZuOWltYzJyeGMycW1jNDVlbDQwejQifQ.97Y2eucdbVp1F2Ow8EHgBQ'
 
 // Basemap type
-// Select one of them by comment/uncomment the variable 'basemap'
+// Select one of them by comment/uncomment the variable 'const basemap'
 
 // White basemap
 const basemap = 'light-v10'
@@ -33,7 +33,7 @@ let transformRequest = (url, resourceType) => {
 
   let map = new mapboxgl.Map({
     container: 'map', // container id
-    style: `mapbox://styles/mapbox/${basemap}`, // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
+    style: `mapbox://styles/mapbox/${basemap}`, 
     center: [-3.931, 50.3465], // starting position [lng, lat]
     zoom: 16, // starting zoom
     transformRequest: transformRequest
@@ -45,7 +45,7 @@ let transformRequest = (url, resourceType) => {
     $.ajax({
       type: "GET",
       //YOUR TURN: Replace with csv export link
-      url: `${google_sheet_name}/gviz/tq?tqx=out:csv&sheet=${sheet_namee}`,
+      url: `${google_sheet_name}/gviz/tq?tqx=out:csv&sheet=${sheet_name}`,
       dataType: "text",
       success: function (csvData) {
         makeGeoJSON(csvData);

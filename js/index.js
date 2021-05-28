@@ -35,15 +35,11 @@ let map = new mapboxgl.Map({
   container: 'map', // container id
   style: `mapbox://styles/mapbox/${basemap}`,
   center: [-3.931, 50.3465], // starting position [lng, lat]
-  zoom: 16, // starting zoom
+  zoom: 10, // starting zoom
   transformRequest: transformRequest
 });
 
 map.addControl(new mapboxgl.NavigationControl());
-
-let layerList = document.getElementById('basemaps').addEventListener('change', function () {
-  map.setStyle(`mapbox://styles/mapbox/${this.value}`)
-});;
 
 
 // var inputs = layerList.getElementsByTagName('input');
@@ -124,6 +120,9 @@ $(document).ready(function () {
         map.fitBounds(bbox, {
           padding: 50
         });
+        let layerList = document.getElementById('basemaps').addEventListener('change', function () {
+          map.setStyle(`mapbox://styles/mapbox/${this.value}`)
+        });;
       });
     });
   };

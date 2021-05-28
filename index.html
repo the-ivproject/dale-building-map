@@ -19,200 +19,16 @@
   <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
   <script src='https://npmcdn.com/csv2geojson@latest/csv2geojson.js'></script>
   <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
 
-    #map {
-      position: absolute;
-      top: 72px;
-      bottom: 0;
-      width: 100%;
-    }
+  <link rel="stylesheet" href="css/style.css">
 
-    .mapboxgl-ctrl-top-right {
-      top: 0;
-      right: 0;
-      z-index: 999 !important;
-    }
-
-    /* Popup styling */
-
-    .mapboxgl-popup {
-      padding-bottom: 5px;
-    }
-
-    .mapboxgl-popup-close-button {
-      display: none;
-    }
-
-    .mapboxgl-popup-content {
-      font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
-      padding: 0;
-      width: 350px;
-      height: 350px;
-    }
-
-    .mapboxgl-popup-content-wrapper {
-      padding: 1%;
-    }
-
-    .mapboxgl-popup-content h3 {
-      background: rgb(61, 59, 59);
-      text-align: center;
-      color: #fff;
-      margin: 0;
-      display: block;
-      padding: 15px;
-      font-weight: 700;
-      margin-top: -5px;
-    }
-
-    .mapboxgl-popup-content h4 {
-      margin: 0;
-      display: block;
-      padding: 10px 3px 10px 10px;
-      font-weight: 400;
-    }
-
-    .mapboxgl-container {
-      cursor: pointer;
-    }
-
-    .mapboxgl-popup-anchor-top>.mapboxgl-popup-content {
-      margin-top: 3px;
-    }
-
-    .mapboxgl-popup-anchor-top>.mapboxgl-popup-tip {
-      border-bottom-color: rgb(61, 59, 59);
-    }
-
-    img {
-      width: 100%;
-    }
-
-    nav {
-      z-index: 999;
-    }
-
-    .nav-link {
-      font-size: 24px;
-      font-weight: bold;
-      color: black !important;
-    }
-
-    .nav-link:hover {
-      cursor: default;
-      color: black !important
-    }
-
-    small {
-      font-size: 12px;
-      font-style: italic;
-    }
-
-    .loader {
-      /* margin: -10px 0 0 -250px; */
-      /* height: 100px; */
-      /* width: 20%; */
-      position: fixed;
-      text-align: center;
-      padding: 1em;
-      top: 50%;
-      left: 50%;
-      /* margin: 0 auto 1em; */
-      z-index: 9999;
-    }
-
-    svg path,
-    svg rect {
-      fill: #1266f1;
-    }
-
-    #overlay {
-      position: fixed;
-      /* Sit on top of the page content */
-      /* display: none; */
-      /* Hidden by default */
-      width: 100%;
-      /* Full width (cover the whole page) */
-      height: 100%;
-      /* Full height (cover the whole page) */
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.15);
-      /* Black background with opacity */
-      z-index: 2;
-      /* Specify a stack order in case you're using a different order for other elements */
-      cursor: pointer;
-      /* Add a pointer on hover */
-    }
-
-    @media only screen and (max-width: 480px) {
-      #map {
-        margin-top: -23px !important;
-      }
-
-      #overlay {
-        margin-top: -23px !important;
-        height: auto;
-      }
-
-      .me-3 {
-        margin-right: 0 !important;
-      }
-
-      .mapboxgl-popup-content {
-        max-width: 300px;
-      }
-
-      .mapboxgl-popup-content div {
-        padding: 0em;
-      }
-
-      .mapboxgl-popup-content p {
-        margin: 0.5em 0.5em;
-      }
-
-      .loader {
-        padding: 0;
-      }
-    }
-
-    #basemaps-wrapper {
-      position: absolute;
-      top: 83px;
-      left: 20px;
-      z-index: 999;
-    }
-
-    #basemaps {
-      padding: 4px 8px;
-      font-size: 16px;
-    }
-
-    #highres {
-      padding: 14px 60px;
-      margin: 20px auto;
-      display: block;
-    }
-  </style>
 </head>
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index:9999"> 
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index:9999">
     <!-- Container wrapper -->
     <div class="container">
-      <!-- Navbar brand -->
-      <!-- <a class="navbar-brand me-2" href="https://mdbgo.com/">
-        <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="16" alt=""
-            loading="lazy" style="margin-top: -1px;" />
-    </a> -->
       <!-- Toggle button -->
       <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample"
         aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
@@ -223,7 +39,9 @@
         <!-- Left links -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#">Building Map <small>Dale Brunning</a>
+            <a class="nav-link" href="#">Building Map <br><small>Building Surveying - Flete House & The Stables Roof
+                Inspection</a>
+            <!-- <a class="nav-link" href="#">Building Map <small>Building Surveying - Flete House & The Stables Roof Inspection</a> -->
           </li>
         </ul>
         <!-- Left links -->
@@ -231,7 +49,7 @@
           <!-- <button type="button" class="btn btn-link px-3 me-2">
                 Login
             </button> -->
-          <button type="button" class="btn btn-primary me-3" style="text-transform: capitalize;" onclick="SendEmail()">
+          <button id="btn-email" type="button" class="btn btn-primary me-3" style="text-transform: capitalize;" onclick="SendEmail()">
             <i class="fas fa-envelope"></i> Send an email to me
           </button>
           <!-- <a class="btn btn-dark px-3" href="https://github.com/mdbootstrap/mdb-ui-kit" role="button"><i
@@ -267,7 +85,9 @@
     </select>
 
   </div>
+
   <div id='map'></div>
+
   <script src="js/index.js"></script>
 
   <script>

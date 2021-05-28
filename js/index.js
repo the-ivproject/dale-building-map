@@ -77,7 +77,7 @@ $(document).ready(function () {
             'circle-color': "red"
           }
         });
-
+        
         //Hide loading bar once tiles from geojson are loaded
         map.on('data', function (e) {
           if (e.dataType === 'source' && e.sourceId === 'csvData') {
@@ -120,9 +120,6 @@ $(document).ready(function () {
         map.fitBounds(bbox, {
           padding: 50
         });
-        let layerList = document.getElementById('basemaps').addEventListener('change', function () {
-          map.setStyle(`mapbox://styles/mapbox/${this.value}`)
-        });;
       });
     });
   };

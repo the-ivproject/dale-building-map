@@ -3,9 +3,8 @@
 
 <head>
   <meta charset='utf-8' />
-  <title>Dale Brunning</title>
+  <title></title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Font Awesome -->
@@ -16,7 +15,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css" rel="stylesheet" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-  <script src='js/mapbox-gl.js'></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
   <script src='https://npmcdn.com/csv2geojson@latest/csv2geojson.js'></script>
   <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
@@ -53,6 +52,7 @@
       font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
       padding: 0;
       width: 350px;
+      height: 350px;
     }
 
     .mapboxgl-popup-content-wrapper {
@@ -162,7 +162,6 @@
         height: auto;
       }
 
-
       .me-3 {
         margin-right: 0 !important;
       }
@@ -178,33 +177,42 @@
       .mapboxgl-popup-content p {
         margin: 0.5em 0.5em;
       }
+
       .loader {
-        padding:0;
+        padding: 0;
       }
     }
+
     #basemaps-wrapper {
       position: absolute;
       top: 83px;
       left: 20px;
       z-index: 999;
-  }
+    }
+
     #basemaps {
       padding: 4px 8px;
       font-size: 16px;
+    }
+
+    #highres {
+      padding: 14px 60px;
+      margin: 20px auto;
+      display: block;
     }
   </style>
 </head>
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="z-index:9999"> 
     <!-- Container wrapper -->
     <div class="container">
       <!-- Navbar brand -->
       <!-- <a class="navbar-brand me-2" href="https://mdbgo.com/">
-          <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="16" alt=""
-              loading="lazy" style="margin-top: -1px;" />
-      </a> -->
+        <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="16" alt=""
+            loading="lazy" style="margin-top: -1px;" />
+    </a> -->
       <!-- Toggle button -->
       <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample"
         aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
@@ -221,31 +229,19 @@
         <!-- Left links -->
         <div class="d-flex align-items-center">
           <!-- <button type="button" class="btn btn-link px-3 me-2">
-                  Login
-              </button> -->
+                Login
+            </button> -->
           <button type="button" class="btn btn-primary me-3" style="text-transform: capitalize;" onclick="SendEmail()">
             <i class="fas fa-envelope"></i> Send an email to me
           </button>
           <!-- <a class="btn btn-dark px-3" href="https://github.com/mdbootstrap/mdb-ui-kit" role="button"><i
-                      class="fab fa-github"></i></a> -->
+                    class="fab fa-github"></i></a> -->
         </div>
       </div>
       <!-- Collapsible wrapper -->
     </div>
     <!-- Container wrapper -->
   </nav>
-  <div id="basemaps-wrapper">
-
-    <select id="basemaps">
-      <option value="light-v10">Light</option>
-      <option value="satellite-v9">Satellite</option>
-      <option value="outdoors-v11">Outdoor</option>
-    </select>
-
-  </div>
-  <div id='map'></div>
-
-
   <div id="overlay">
     <div class="loader loader--style1" title="0" id="loader">
       <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -262,13 +258,24 @@
       </svg>
     </div>
   </div>
+  <div id="basemaps-wrapper">
 
+    <select id="basemaps">
+      <option value="light-v10">Light</option>
+      <option value="satellite-v9">Satellite</option>
+      <option value="outdoors-v11">Outdoor</option>
+    </select>
+
+  </div>
+  <div id='map'></div>
   <script src="js/index.js"></script>
+
   <script>
     function SendEmail() {
       window.open('https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=dale@droneworks360.com', '_blank')
     }
   </script>
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
 </body>
 
